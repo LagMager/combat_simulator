@@ -1,4 +1,7 @@
 
+import random
+
+
 class Character:
     def __init__(self, name, health, attack, defense):
         self.name = name
@@ -32,22 +35,22 @@ def main():
         #Player Turn
         if player_turn == True:
             valid_actions = [1,2,3]
-            action = None
+            player_action = None
             print("\nPlayer Turn")
             print("\nChoose your next action!")
             print("1. Attack\n2. Defend\n3. Heal")
             
-            while action not in valid_actions:
+            while player_action not in valid_actions:
                 try:
-                    action = int(input("> "))
-                    if action not in valid_actions:
+                    player_action = int(input("> "))
+                    if player_action not in valid_actions:
                         print("Please choose a valid action: 1, 2, or 3.")
                     else:
                         break
                 except ValueError:
                     print("Please enter a number (1, 2, or 3).")
         
-            match action:
+            match player_action:
                 case 1:
                     player.deal_damage(enemy)
                 case 2:
@@ -61,10 +64,24 @@ def main():
 
         #Enemy Turn
         else:
-            
-            print("I'm evil!")
-            print("")
+            enemy_action = random.randrange(1,3)
+            print(enemy_action)
+            match enemy_action:
+                case 1:
+                    enemy.deal_damage(player)
+                case 2:
+                    enemy.defend
+                case 3:
+                    enemy.heal()
             player_turn = True
+
+        #Win Check
+
+        if player.health == 0:
+            enemy_victory = True
+        elif enemy.health == 0:
+            player_victory = True
+        
 
     return 0
 
