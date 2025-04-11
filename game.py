@@ -1,24 +1,42 @@
+"""
+game.py
+========
+
+This module implements the main game loop for the Combat Simulator, a text-based game where players fight enemies in turn-based combat.
+
+Classes:
+--------
+- None (relies on the `Character` class from `character.py`).
+
+Functions:
+----------
+- main():
+    The main function that initializes the game, sets up the player and enemy, and runs the game loop.
+
+Game Flow:
+----------
+1. The player and enemy are initialized as instances of the `Character` class.
+2. The game alternates between the player's turn and the enemy's turn.
+3. On the player's turn, they can choose to:
+    - Attack: Deal damage to the enemy.
+    - Defend: Reduce incoming damage on the next enemy attack.
+    - Heal: Restore some health.
+4. On the enemy's turn, a random action is chosen (attack, defend, or heal).
+5. The game ends when either the player's or the enemy's health reaches 0.
+
+Dependencies:
+-------------
+- `random`: Used to determine the enemy's actions.
+- `character.Character`: The class that defines the player and enemy entities.
+
+Usage:
+------
+Run the script directly to start the game:
+    $ python game.py
+"""
 
 import random
-
-
-class Character:
-    def __init__(self, name, health, attack, defense):
-        self.name = name
-        self.health = health
-        self.attack = attack
-        self.defense = defense
-        self.is_defending = False
-
-    def deal_damage(self,other):
-        other.health -= self.attack
-        print(f"{self.name} Attacks {other.name} for {self.attack} Damage!!")
-    def defend(self):
-        self.is_defending = True
-        print(f"{self.name} is defending!")
-    def heal(self):
-        self.health += 10
-        print(f"{self.name} heals 10 HP!")
+from character import Character
         
 def main():
     #Defining Entities
